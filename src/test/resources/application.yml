@@ -1,0 +1,37 @@
+
+#spring.h2.console.enabled: true
+#spring.h2.console.path: /h2-console
+spring:
+  datasource:
+    drive-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://db4free.net:3306/lototestee?useTimezone=true&serverTimezone=UTC&useSSL=false
+    username: lototestee
+    password: admin123
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: false
+
+security:
+  jwt:
+    token:
+      secret-key: 53cr37
+      expire-length: 3600000
+cors:
+  originPatterns: http://localhost:3000,http://localhost:8080,https://erudio.com.br,chrome-extension://aejoelaoggembcahagimdiliamlcdmfm/index.html#requests,chrome-extension://lbbipjkemiloaocppjiiggonggdaljak
+
+spring.mail.host: smtp.gmail.com
+spring.mail.port: 587
+spring.mail.username: wilsza27@gmail.com
+spring.mail.password: cpllgbziqlmsydsh
+spring.mail.properties.mail.smtp.auth: true
+spring.mail.properties.mail.smtp.connectiontimeout: 5000
+spring.mail.properties.mail.smtp.timeout: 5000
+spring.mail.properties.mail.smtp.writetimeout: 5000
+
+# SSL, post 465
+spring.mail.properties.mail.smtp.socketFactory.port: 465
+spring.mail.properties.mail.smtp.socketFactory.class: javax.net.ssl.SSLSocketFactory
