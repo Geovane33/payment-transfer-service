@@ -1,10 +1,8 @@
 package com.purebank.paymenttransferservice.transfer.service.Impl;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.purebank.paymenttransferservice.transfer.api.resource.TransferResource;
 import com.purebank.paymenttransferservice.transfer.domain.Transfer;
-import com.purebank.paymenttransferservice.transfer.exceptions.TransferException;
 import com.purebank.paymenttransferservice.transfer.repository.TransferRepository;
 import com.purebank.paymenttransferservice.transfer.service.TransferService;
 import com.purebank.paymenttransferservice.transfer.utils.TransferStatus;
@@ -23,10 +21,6 @@ public class TransferServiceImpl implements TransferService {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    @Autowired
-    private ObjectMapper objectMapper;
-
-
 //    @Autowired
 //    private WalletService walletService;
 
@@ -40,24 +34,12 @@ public class TransferServiceImpl implements TransferService {
         transfer.setWalletOrigin(transferResource.getWalletOrigin());
         transferRepository.save(transfer);
         //Todo - Tratamento de exceção
-        String transferAsString;
-        try {
-            transferAsString = objectMapper.writeValueAsString(transfer);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
-        rabbitTemplate.convertAndSend("direct-exchange-default", "queue-update-accounts-balance-key", transferAsString);
+        rabbitTemplate.convertAndSend("direct-exchange-default", "queue-update-accounts-balance-key", transfer);
         return transfer.getId();
     }
 
     @RabbitListener(queues = "update-status-transfer")
-    public void updateTransferStatus(String payload) {
-        Transfer transfer;
-        try {
-            transfer = objectMapper.readValue(payload, Transfer.class);
-        } catch (JsonProcessingException ex) {
-            throw new TransferException("Erro ao realizar parse do payload de atualização do status da transação", ex);
-        }
+    public void updateTransferStatus(Transfer transfer) {
         transferRepository.save(transfer);
     }
 
