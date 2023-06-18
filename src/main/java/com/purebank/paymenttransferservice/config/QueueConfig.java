@@ -8,9 +8,9 @@ import org.springframework.context.annotation.Configuration;
 public class QueueConfig {
 
     @Bean
-    public Queue queueTransfer() {
+    public Queue queueUpdateAccountBalance() {
         return QueueBuilder
-                .durable("transfer")
+                .durable("update-accounts-balance")
                 .build();
     }
 }

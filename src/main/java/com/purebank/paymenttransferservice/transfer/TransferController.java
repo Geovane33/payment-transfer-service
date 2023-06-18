@@ -16,13 +16,16 @@ public class TransferController implements TransferApi {
     private TransferService transferService;
 
     @Override
-    public ResponseEntity<TransferResource> transfer(TransferResource TransferResource) {
-        return ResponseEntity.ok(TransferResource);
+    public ResponseEntity<String> transfer(TransferResource TransferResource) {
+        Long transferId = transferService.transfer(TransferResource);
+        String urlStatusTransfer = String.format("/api/transfer/%s", transferId);
+        return ResponseEntity.ok(urlStatusTransfer);
     }
 
     @Override
     public ResponseEntity<TransferResource> getTransferById(Long transferId) {
-        return ResponseEntity.ok().build();
+        TransferResource transferById = transferService.getTransferById(transferId);
+        return ResponseEntity.ok(transferById);
     }
 
     public ResponseEntity<Void> teste(String msg) {

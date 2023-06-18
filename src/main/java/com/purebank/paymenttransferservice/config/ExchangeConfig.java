@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class ExchangeConfig {
 
     @Autowired
-    private Queue queueTransfer;
+    private Queue queueUpdateAccountBalance;
 
     @Bean
     public Exchange directExchange() {
@@ -21,9 +21,9 @@ public class ExchangeConfig {
     @Bean
     public Binding bindingQueueTransfer() {
         return BindingBuilder
-                .bind(queueTransfer)
+                .bind(queueUpdateAccountBalance)
                 .to(directExchange())
-                .with("queue-transfer-key")
+                .with("queue-update-accounts-balance-key")
                 .noargs();
     }
 }

@@ -18,6 +18,9 @@ public class TransferResource {
     private BigDecimal amount;
 
     @Schema(description = "Status da transferência")
+    private String statusDescription;
+
+    @Schema(description = "Status da transferência")
     private TransferStatus status;
     @Schema(description = "Conta externa (true se for uma conta externa, false se for interna)")
     private Boolean externalAccount;

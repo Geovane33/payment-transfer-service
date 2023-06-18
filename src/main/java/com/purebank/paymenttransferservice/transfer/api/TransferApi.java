@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/transfer")
 public interface TransferApi {
     @PostMapping
-    ResponseEntity<TransferResource> transfer(@RequestBody TransferResource TransferResource);
+    ResponseEntity<String> transfer(@RequestBody TransferResource TransferResource);
 
 
     @GetMapping("/{transferId}")

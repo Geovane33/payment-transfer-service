@@ -4,7 +4,7 @@ import com.purebank.paymenttransferservice.transfer.api.resource.TransferResourc
 
 
 public interface TransferService {
-    TransferResource transfer(TransferResource transferResource);
+    Long transfer(TransferResource transferResource);
 
     TransferResource getTransferById(Long walletId);
 }
