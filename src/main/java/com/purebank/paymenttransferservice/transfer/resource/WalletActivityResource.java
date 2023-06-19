@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class WalletActivityResource implements Serializable {
     private String uuidActivity;
+
     private Long walletId;
 
     private String activityType;

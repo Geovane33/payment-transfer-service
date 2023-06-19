@@ -9,10 +9,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class TransferMessageConsumer {
+    private static final String PERFORM_TRANSFER = "perform-transfer";
     @Autowired
     TransferService transferService;
 
-    @RabbitListener(queues = "perform-transfer")
+    @RabbitListener(queues = PERFORM_TRANSFER)
     public void updateTransferStatus(TransferResource transferResource) {
         transferService.performTransfer(transferResource);
     }
