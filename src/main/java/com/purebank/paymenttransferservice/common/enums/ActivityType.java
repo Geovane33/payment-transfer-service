@@ -1,6 +1,6 @@
-package com.purebank.paymenttransferservice.transfer.enums;
+package com.purebank.paymenttransferservice.common.enums;
 
-public enum TransferType {
+public enum ActivityType {
     DEPOSIT("Deposit"),
     WITHDRAWAL("Withdrawal"),
     TRANSFER("Transfer"),
@@ -8,7 +8,7 @@ public enum TransferType {
 
     private final String displayName;
 
-    TransferType(String displayName) {
+    ActivityType(String displayName) {
         this.displayName = displayName;
     }
 

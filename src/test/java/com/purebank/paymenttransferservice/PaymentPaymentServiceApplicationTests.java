@@ -7,7 +7,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 //@AutoConfigureMockMvc
 //@ExtendWith(SpringExtension.class)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class PaymentTransferServiceApplicationTests {
+class PaymentPaymentServiceApplicationTests {
 
 	@Test
 	void contextLoads() {

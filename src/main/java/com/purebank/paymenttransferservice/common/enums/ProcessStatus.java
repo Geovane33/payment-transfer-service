@@ -1,4 +1,4 @@
-package com.purebank.paymenttransferservice.transfer.enums;
+package com.purebank.paymenttransferservice.common.enums;
 
 public enum ProcessStatus {
     PENDING("Pending"),

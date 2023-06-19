@@ -1,7 +1,7 @@
-package com.purebank.paymenttransferservice.transfer.exceptions.handler;
+package com.purebank.paymenttransferservice.exceptions.handler;
 
-import com.purebank.paymenttransferservice.transfer.exceptions.ApiErrorMessage;
-import com.purebank.paymenttransferservice.transfer.exceptions.Exception;
+import com.purebank.paymenttransferservice.exceptions.ApiErrorMessage;
+import com.purebank.paymenttransferservice.exceptions.Exception;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;

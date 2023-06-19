@@ -1,4 +1,4 @@
-package com.purebank.paymenttransferservice.message.consumer;
+package com.purebank.paymenttransferservice.transfer.message.consumer;
 
 import com.purebank.paymenttransferservice.transfer.domain.Transfer;
 import com.purebank.paymenttransferservice.transfer.resource.TransferResource;

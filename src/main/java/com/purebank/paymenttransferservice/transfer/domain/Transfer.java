@@ -1,6 +1,6 @@
 package com.purebank.paymenttransferservice.transfer.domain;
 
-import com.purebank.paymenttransferservice.transfer.enums.ProcessStatus;
+import com.purebank.paymenttransferservice.common.enums.ProcessStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 

@@ -1,6 +1,7 @@
-package com.purebank.paymenttransferservice.transfer.resource;
+package com.purebank.paymenttransferservice.common.resource;
 
-import com.purebank.paymenttransferservice.transfer.enums.ProcessStatus;
+import com.purebank.paymenttransferservice.common.enums.ActivityType;
+import com.purebank.paymenttransferservice.common.enums.ProcessStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,7 +18,7 @@ public class WalletActivityResource implements Serializable {
 
     private Long walletId;
 
-    private String activityType;
+    private ActivityType activityType;
 
     private ProcessStatus status;
 

@@ -1,4 +1,4 @@
-package com.purebank.paymenttransferservice.transfer.exceptions;
+package com.purebank.paymenttransferservice.exceptions;
 
 import lombok.Getter;
 import lombok.Setter;
