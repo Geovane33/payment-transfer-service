@@ -1,6 +1,5 @@
 package com.purebank.paymenttransferservice.transfer.service;
 
-import com.purebank.paymenttransferservice.transfer.repository.TransferRepository;
 import com.purebank.paymenttransferservice.transfer.service.Impl.TransferServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,9 +16,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 public class TransferServiceTest {
     @Autowired
     private TransferService transferService;
-
-    @MockBean
-    private TransferRepository transferRepository;
 
     @BeforeEach
     void setup() {

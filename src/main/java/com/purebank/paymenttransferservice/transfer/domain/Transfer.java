@@ -1,6 +1,6 @@
 package com.purebank.paymenttransferservice.transfer.domain;
 
-import com.purebank.paymenttransferservice.transfer.utils.TransferStatus;
+import com.purebank.paymenttransferservice.transfer.enums.ProcessStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -21,7 +21,7 @@ public class Transfer {
 
     private BigDecimal amount;
 
-    private TransferStatus status;
+    private ProcessStatus status;
 
     private String statusDescription;
 
