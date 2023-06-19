@@ -34,7 +34,6 @@ public class TransferServiceImpl implements TransferService {
         transfer.setWalletOrigin(transferResource.getWalletOrigin());
         transferRepository.save(transfer);
         //Todo - Tratamento de exceção
-        rabbitTemplate.convertAndSend("direct-exchange-default", "queue-update-accounts-balance-key", transfer);
         return transfer.getId();
     }
 
