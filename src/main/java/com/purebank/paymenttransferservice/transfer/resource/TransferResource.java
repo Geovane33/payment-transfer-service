@@ -1,7 +1,7 @@
 package com.purebank.paymenttransferservice.transfer.resource;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.purebank.paymenttransferservice.transfer.enums.ProcessStatus;
+import com.purebank.paymenttransferservice.common.enums.ProcessStatus;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

@@ -1,4 +1,4 @@
-package com.purebank.paymenttransferservice.transfer.exceptions;
+package com.purebank.paymenttransferservice.exceptions;
 
 
 import org.springframework.http.HttpStatus;

@@ -2,20 +2,18 @@ package com.purebank.paymenttransferservice.transfer.service.Impl;
 
 import com.purebank.paymenttransferservice.external.wallet.resourcer.WalletResource;
 import com.purebank.paymenttransferservice.external.wallet.service.WalletServiceFeignClient;
-import com.purebank.paymenttransferservice.message.producer.TransferMessageProducer;
-import com.purebank.paymenttransferservice.transfer.enums.ProcessStatus;
-import com.purebank.paymenttransferservice.transfer.exceptions.Exception;
-import com.purebank.paymenttransferservice.transfer.exceptions.TransferException;
+import com.purebank.paymenttransferservice.transfer.message.producer.TransferMessageProducer;
+import com.purebank.paymenttransferservice.common.enums.ProcessStatus;
+import com.purebank.paymenttransferservice.exceptions.Exception;
+import com.purebank.paymenttransferservice.exceptions.TransferException;
 import com.purebank.paymenttransferservice.transfer.resource.TransferResource;
-import com.purebank.paymenttransferservice.transfer.resource.WalletActivityResource;
+import com.purebank.paymenttransferservice.common.resource.WalletActivityResource;
 import com.purebank.paymenttransferservice.transfer.service.TransferService;
 import feign.FeignException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
 
-import java.net.ConnectException;
 import java.time.LocalDateTime;
 import java.util.UUID;
 

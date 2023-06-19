@@ -1,6 +1,7 @@
 package com.purebank.paymenttransferservice.transfer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.purebank.paymenttransferservice.payment.PaymentController;
 import com.purebank.paymenttransferservice.transfer.service.TransferService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,7 +10,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-@WebMvcTest(TransferController.class)
+@WebMvcTest(PaymentController.class)
 public class TransferControllerTest {
 	@Autowired
 	private MockMvc mvc;

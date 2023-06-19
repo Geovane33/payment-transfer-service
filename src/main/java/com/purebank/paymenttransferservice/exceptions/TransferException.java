@@ -1,4 +1,4 @@
-package com.purebank.paymenttransferservice.transfer.exceptions;
+package com.purebank.paymenttransferservice.exceptions;
 public class TransferException extends RuntimeException {
 
     public TransferException(String message) {

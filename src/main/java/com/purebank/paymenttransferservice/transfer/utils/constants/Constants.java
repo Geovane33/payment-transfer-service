@@ -15,5 +15,4 @@ public class Constants {
 
     public static final String TRANSFER_RECEIVED_FROM_WALLET_X = "Transferência recebida de %s";
 
-
 }

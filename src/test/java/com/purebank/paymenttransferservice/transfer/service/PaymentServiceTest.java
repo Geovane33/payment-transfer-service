@@ -13,7 +13,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 //@ExtendWith(MockitoExtension.class)
 //@AutoConfigureMockMvc
 @SpringBootTest(classes = {TransferService.class, TransferServiceImpl.class})
-public class TransferServiceTest {
+public class PaymentServiceTest {
     @Autowired
     private TransferService transferService;
 

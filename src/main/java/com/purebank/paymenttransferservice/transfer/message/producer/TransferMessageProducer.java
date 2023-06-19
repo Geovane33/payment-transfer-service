@@ -1,7 +1,7 @@
-package com.purebank.paymenttransferservice.message.producer;
+package com.purebank.paymenttransferservice.transfer.message.producer;
 
 import com.purebank.paymenttransferservice.transfer.resource.TransferResource;
-import com.purebank.paymenttransferservice.transfer.resource.WalletActivityResource;
+import com.purebank.paymenttransferservice.common.resource.WalletActivityResource;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

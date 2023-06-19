@@ -1,7 +1,7 @@
 package com.purebank.paymenttransferservice.transfer;
 
+import com.purebank.paymenttransferservice.exceptions.Exception;
 import com.purebank.paymenttransferservice.transfer.api.TransferApi;
-import com.purebank.paymenttransferservice.transfer.exceptions.Exception;
 import com.purebank.paymenttransferservice.transfer.resource.TransferResource;
 import com.purebank.paymenttransferservice.transfer.service.TransferService;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
