@@ -1,14 +1,12 @@
-package com.purebank.paymenttransferservice.transfer.utils;
+package com.purebank.paymenttransferservice.transfer.enums;
 
-public enum TransferStatus {
+public enum ProcessStatus {
     PENDING("Pending"),
     COMPLETED("Completed"),
-    FAILED("Failed"),
-    CANCELED("Canceled");
-
+    FAILED("Failed");
     private String label;
 
-    TransferStatus(String label) {
+    ProcessStatus(String label) {
         this.label = label;
     }
 

@@ -11,8 +11,8 @@ public class Exception extends RuntimeException {
     private HttpStatus status;
 
     public static class NotFound extends Exception {
-        public NotFound(Long id) {
-            super(String.format("User with id %d not found.", id), HttpStatus.NOT_FOUND);
+        public NotFound(String message) {
+            super(message, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -52,9 +52,9 @@ public class Exception extends RuntimeException {
         }
     }
 
-    public static class IncorretCombinationCPFAndBirthdate extends Exception {
-        public IncorretCombinationCPFAndBirthdate() {
-            super("Incorrect CPF and date of birth combination", HttpStatus.BAD_REQUEST);
+    public static class InsufficientBalance extends Exception {
+        public InsufficientBalance(String message) {
+            super(message, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -67,6 +67,12 @@ public class Exception extends RuntimeException {
     public static class ErrorSendingValidationEmail extends Exception {
         public ErrorSendingValidationEmail() {
             super("Error sending validation email", HttpStatus.OK);
+        }
+    }
+
+    public static class InvalidAmount extends Exception {
+        public InvalidAmount(String message) {
+            super(message, HttpStatus.BAD_REQUEST);
         }
     }
 

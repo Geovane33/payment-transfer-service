@@ -11,9 +11,9 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitMQConfig {
 
     @Bean
-    public Queue queueUpdateAccountBalance() {
+    public Queue queuePerformTransfer() {
         return QueueBuilder
-                .durable("update-accounts-balance")
+                .durable("perform-transfer")
                 .build();
     }
 
@@ -27,9 +27,9 @@ public class RabbitMQConfig {
     @Bean
     public Binding bindingUpdateAccountBalance() {
         return BindingBuilder
-                .bind(queueUpdateAccountBalance())
+                .bind(queuePerformTransfer())
                 .to(directExchange())
-                .with("queue-update-accounts-balance-key")
+                .with("queue-perform-transfer-key")
                 .noargs();
     }
 

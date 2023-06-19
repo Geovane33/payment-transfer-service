@@ -1,10 +1,10 @@
 package com.purebank.paymenttransferservice.transfer.service;
 
-import com.purebank.paymenttransferservice.transfer.api.resource.TransferResource;
+import com.purebank.paymenttransferservice.transfer.resource.TransferResource;
 
 
 public interface TransferService {
-    Long transfer(TransferResource transferResource);
+    void transfer(TransferResource transferResource);
 
-    TransferResource getTransferById(Long walletId);
+    void performTransfer(TransferResource transferResource);
 }

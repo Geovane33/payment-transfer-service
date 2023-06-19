@@ -1,4 +1,4 @@
-package com.purebank.paymenttransferservice.transfer.utils;
+package com.purebank.paymenttransferservice.transfer.enums;
 
 public enum TransferType {
     DEPOSIT("Deposit"),
