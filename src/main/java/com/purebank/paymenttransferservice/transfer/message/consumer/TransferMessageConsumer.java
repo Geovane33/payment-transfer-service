@@ -1,6 +1,5 @@
 package com.purebank.paymenttransferservice.transfer.message.consumer;
 
-import com.purebank.paymenttransferservice.transfer.domain.Transfer;
 import com.purebank.paymenttransferservice.transfer.resource.TransferResource;
 import com.purebank.paymenttransferservice.transfer.service.TransferService;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
