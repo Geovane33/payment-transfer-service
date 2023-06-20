@@ -5,6 +5,7 @@ import com.purebank.paymenttransferservice.transfer.message.producer.TransferMes
 import com.purebank.paymenttransferservice.transfer.resource.TransferResource;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -31,6 +32,7 @@ public class TransferMessageProducerTest {
     }
 
     @Test
+    @DisplayName("Teste fila de transferencia")
     void sendPerformTransferQueueTest() {
         TransferResource transferResource = new TransferResource();
         transferResource.setAmount(BigDecimal.valueOf(100));
@@ -47,6 +49,7 @@ public class TransferMessageProducerTest {
     }
 
     @Test
+    @DisplayName("Teste fila de registro das atividades da carteira")
     void sendWalletActivityTest() {
         WalletActivityResource walletActivityResource = new WalletActivityResource();
         walletActivityResource.setWalletId(1L);
