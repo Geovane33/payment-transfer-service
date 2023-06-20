@@ -28,6 +28,12 @@ public class Exception extends RuntimeException {
         }
     }
 
+    public static class ServiceTemporarilyOffline extends Exception {
+        public ServiceTemporarilyOffline(String message) {
+            super(message, HttpStatus.BAD_REQUEST);
+        }
+    }
+
     public Exception(String message, HttpStatus... status) {
         super(message);
         this.status = HttpStatus.OK;

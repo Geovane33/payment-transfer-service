@@ -15,20 +15,26 @@ public class Transfer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "wallet_origin")
     private Long walletOrigin;
 
+    @Column(name = "wallet_destiny")
     private Long walletDestiny;
 
     private BigDecimal amount;
 
+    @Enumerated(EnumType.STRING)
     private ProcessStatus status;
 
+    @Column(name = "status_description")
     private String statusDescription;
 
+    @Column(name = "external_account")
     private boolean externalAccount;
 
     @Column(name = "creation_date")
     private LocalDateTime creationDate;
+
     @Column(name = "last_update")
     private LocalDateTime lastUpdate;
 }

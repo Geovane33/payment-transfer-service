@@ -13,6 +13,6 @@ public class PaymentController implements PaymentApi {
 
     public ResponseEntity<String> pay(Long walletId, String paymentIdentifier) {
         paymentService.pay(walletId, paymentIdentifier);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("Pagamento realizado com sucesso");
     }
 }

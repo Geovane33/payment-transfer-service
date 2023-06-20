@@ -3,7 +3,6 @@ package com.purebank.paymenttransferservice.transfer.resource;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.purebank.paymenttransferservice.common.enums.ProcessStatus;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -30,7 +29,7 @@ public class TransferResource {
     @Schema(description = "Status da transferência")
     private ProcessStatus status;
 
-    @Schema(description = "Status da transferência")
+    @Schema(description = "Descrição da transferência")
     private String statusDescription;
 
     @JsonIgnore

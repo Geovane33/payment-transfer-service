@@ -42,7 +42,7 @@ public class PaymentServiceImpl implements PaymentService {
         wallet.setBalance(wallet.getBalance().subtract(AMOUNT_PAYMENT));
         walletServiceFeignClient.updateWallet(wallet);
 
-        sendWalletActivity(PAYMENT_SUCCESS_MESSAGE, walletId, ProcessStatus.COMPLETED);
+        sendWalletActivity(String.format(PAYMENT_SUCCESS_MESSAGE, paymentIdentifier), walletId, ProcessStatus.COMPLETED);
     }
 
     private void sendWalletActivity(String description, Long walletId, ProcessStatus status) {

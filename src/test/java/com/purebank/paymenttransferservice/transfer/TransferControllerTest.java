@@ -21,8 +21,6 @@ import java.math.BigDecimal;
 @WebMvcTest(TransferController.class)
 public class TransferControllerTest {
     public static final String API_TRANSFER = "/api/transfer";
-    @Autowired
-    private MockMvc mvc;
 
     @MockBean
     private TransferService transferService;
