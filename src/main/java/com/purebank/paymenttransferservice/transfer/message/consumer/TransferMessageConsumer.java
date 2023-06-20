@@ -31,6 +31,7 @@ public class TransferMessageConsumer {
             //Confirma o processamento bem-sucedido da mensagem
             confirmMessageProcessing(channel, deliveryTag);
         }catch (TransferException ex) {
+            //Se lançado TransferException não deve ter tratamento pois é relacionado a saldo insufiente e wallet não encontrada
             log.error("{}", ex.getMessage());
             confirmMessageProcessing(channel, deliveryTag);
         }catch (TransferUpdateWalletsException ex){
