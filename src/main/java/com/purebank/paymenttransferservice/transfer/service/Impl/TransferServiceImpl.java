@@ -1,5 +1,6 @@
 package com.purebank.paymenttransferservice.transfer.service.Impl;
 
+import com.purebank.paymenttransferservice.common.enums.ActivityType;
 import com.purebank.paymenttransferservice.external.wallet.resourcer.WalletResource;
 import com.purebank.paymenttransferservice.external.wallet.service.WalletServiceFeignClient;
 import com.purebank.paymenttransferservice.transfer.message.producer.TransferMessageProducer;
@@ -11,6 +12,7 @@ import com.purebank.paymenttransferservice.common.resource.WalletActivityResourc
 import com.purebank.paymenttransferservice.transfer.service.TransferService;
 import feign.FeignException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -79,7 +81,7 @@ public class TransferServiceImpl implements TransferService {
     private void sendWalletActivity(String description, Long walletId, ProcessStatus status, TransferResource transferResource) {
         WalletActivityResource walletActivityResource = new WalletActivityResource();
         walletActivityResource.setActivityDate(LocalDateTime.now());
-        walletActivityResource.setActivityType(ACTIVITY_TYPE_TRANSFER);
+        walletActivityResource.setActivityType(ActivityType.TRANSFER);
         walletActivityResource.setDescription(description);
         walletActivityResource.setStatus(status);
         walletActivityResource.setAmount(transferResource.getAmount());
@@ -96,6 +98,7 @@ public class TransferServiceImpl implements TransferService {
             walletServiceFeignClient.updateWallet(walletOrigin);
             walletServiceFeignClient.updateWallet(walletDestiny);
         } catch (Exception ex) {
+            log.error("Erro ao atualizar saldo de contas durante tranferência conta origem: {} - conta destino: {}", walletOrigin.getId(), walletDestiny.getId());
             sendWalletActivity(String.format(FAILURE_TRANSFER_TO_WALLET_X, walletDestiny.getName()), walletOrigin.getId(), ProcessStatus.FAILED, transferResource);
             throw ex;
         }

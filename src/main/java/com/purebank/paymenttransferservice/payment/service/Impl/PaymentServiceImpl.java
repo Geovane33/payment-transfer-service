@@ -16,8 +16,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import static com.purebank.paymenttransferservice.payment.utils.constants.Constants.SALDO_INSUFFICIENT_TO_PERFORM_PAYMENT;
-import static com.purebank.paymenttransferservice.payment.utils.constants.Constants.WALLET_NOT_FOUND;
+import static com.purebank.paymenttransferservice.payment.utils.constants.Constants.*;
 
 @Service
 @Slf4j
@@ -30,21 +29,20 @@ public class PaymentServiceImpl implements PaymentService {
     private PaymentMessageProducer paymentMessageProducer;
 
     @Override
-    public void pay(Long walletId,  Long paymentIdentifier) {
+    public void pay(Long walletId, String paymentIdentifier) {
         WalletResource wallet = getWalletResource(walletId, new Exception.NotFound(String.format(WALLET_NOT_FOUND, walletId)));
 
-
         if (insufficientBalance(wallet)) {
-            sendWalletActivity(String.format("Saldo insuficiente para realizar o pagamento da conta: %s ", paymentIdentifier),
+            sendWalletActivity(String.format(INSUFFICIENT_BALANCE_TO_PERFORM_PAYMENT, paymentIdentifier),
                     walletId, ProcessStatus.FAILED);
 
-            throw new Exception.InsufficientBalance(SALDO_INSUFFICIENT_TO_PERFORM_PAYMENT);
+            throw new Exception.InsufficientBalance(String.format(INSUFFICIENT_BALANCE_TO_PERFORM_PAYMENT, paymentIdentifier));
         }
 
         wallet.setBalance(wallet.getBalance().subtract(AMOUNT_PAYMENT));
         walletServiceFeignClient.updateWallet(wallet);
 
-        sendWalletActivity("Pagamento realizado com sucesso", walletId, ProcessStatus.COMPLETED);
+        sendWalletActivity(PAYMENT_SUCCESS_MESSAGE, walletId, ProcessStatus.COMPLETED);
     }
 
     private void sendWalletActivity(String description, Long walletId, ProcessStatus status) {
@@ -70,8 +68,6 @@ public class PaymentServiceImpl implements PaymentService {
             throw e;
         }
     }
-
-
 
 
     private boolean insufficientBalance(WalletResource wallet) {

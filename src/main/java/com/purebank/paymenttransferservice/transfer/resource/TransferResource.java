@@ -12,24 +12,26 @@ import java.math.BigDecimal;
 @Data
 public class TransferResource {
     @Schema(description = "ID da carteira digital de origem")
-    @NotBlank(message = "Informe a carteira de origem")
+    @NotNull(message = "Informe a carteira de origem")
     private Long walletOrigin;
 
     @Schema(description = "ID da carteira digital de destino")
-    @NotBlank(message = "Informe a carteira de destino")
+    @NotNull(message = "Informe a carteira de destino")
     private Long walletDestiny;
 
     @Schema(description = "Valor da transferência")
     @NotNull(message = "Informe o valor da transferencia")
     private BigDecimal amount;
 
-    @Schema(description = "Descrição do status")
-    private String statusDescription;
+    @Schema(description = "Conta externa (true se for uma conta externa, false se for interna)")
+    @NotNull(message = "Informe se a conta de destino interna ou externa")
+    private Boolean externalAccount;
 
     @Schema(description = "Status da transferência")
     private ProcessStatus status;
-    @Schema(description = "Conta externa (true se for uma conta externa, false se for interna)")
-    private Boolean externalAccount;
+
+    @Schema(description = "Status da transferência")
+    private String statusDescription;
 
     @JsonIgnore
     private String uuidActivity;
