@@ -34,10 +34,12 @@ public class TransferServiceImpl implements TransferService {
     @Override
     public void transfer(TransferResource transferResource) {
         WalletResource walletOrigin = getWalletResource(transferResource
-                .getWalletOrigin(), new Exception.NotFound(FAILURE_TRANSFER_ORIGIN_WALLET_NOT_FOUND));
+                .getWalletOrigin(), new Exception.NotFound(String
+                .format(FAILURE_TRANSFER_ORIGIN_WALLET_NOT_FOUND, transferResource.getWalletOrigin())));
 
         WalletResource walletDestiny = getWalletResource(transferResource
-                .getWalletDestiny(), new Exception.NotFound(FAILURE_TRANSFER_DESTINATION_WALLET_NOT_FOUND));
+                .getWalletDestiny(), new Exception.NotFound(String
+                .format(FAILURE_TRANSFER_DESTINATION_WALLET_NOT_FOUND, transferResource.getWalletDestiny())));
 
         if (insufficientBalance(transferResource, walletOrigin)) {
             throw new Exception.InsufficientBalance(FAILURE_TRANSFER_INSUFFICIENT_BALANCE);
@@ -55,10 +57,10 @@ public class TransferServiceImpl implements TransferService {
 
         WalletResource walletDestiny = getWalletResource(transferResource
                 .getWalletDestiny(), new TransferException(String
-                .format(FAILURE_TRANSFER_ORIGIN_WALLET_NOT_FOUND, transferResource.getWalletDestiny())));
+                .format(FAILURE_TRANSFER_DESTINATION_WALLET_NOT_FOUND, transferResource.getWalletDestiny())));
 
         if (insufficientBalance(transferResource, walletOrigin)) {
-            sendWalletActivity(String.format(FAILURE_TRANSFER_TO_WALLET_X, walletDestiny.getName()), walletOrigin.getId(), ProcessStatus.FAILED, transferResource);
+            sendWalletActivity(String.format(FAILURE_TRANSFER_TO_WALLET_X_INSUFFICIENT_BALANCE, walletDestiny.getName()), walletOrigin.getId(), ProcessStatus.FAILED, transferResource);
             throw new TransferException(FAILURE_TRANSFER_INSUFFICIENT_BALANCE);
         }
 
@@ -74,10 +76,9 @@ public class TransferServiceImpl implements TransferService {
             return walletServiceFeignClient.getWallet(transferResource);
         } catch (FeignException.NotFound notFound) {
             throw ex;
-        } catch (Exception e) {
+        } catch (FeignException e) {
             log.error("Erro ao obter carteira : {}", e.getMessage());
-            e.printStackTrace();
-            throw e;
+            throw new Exception.ServiceTemporarilyOffline("Serviço temporariamente fora do ar");
         }
     }
 

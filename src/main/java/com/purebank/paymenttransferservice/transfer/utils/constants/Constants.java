@@ -7,6 +7,8 @@ public class Constants {
 
     public static final String FAILURE_TRANSFER_INSUFFICIENT_BALANCE = "Falha na transferência: Saldo insuficiente";
 
+    public static final String FAILURE_TRANSFER_TO_WALLET_X_INSUFFICIENT_BALANCE = "Falha na transferência para %s saldo insuficiente";
+
     public static final String FAILURE_TRANSFER_TO_WALLET_X = "Falha na transferência para %s";
 
     public static final String TRANSFER_TO_WALLET_X = "Transferência para %s";

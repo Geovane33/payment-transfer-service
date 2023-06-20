@@ -16,7 +16,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 
@@ -123,7 +122,7 @@ public class TransferServiceTest {
         Mockito.when(walletServiceFeignClient.getWallet(1L)).thenThrow(FeignException.NotFound.class);
 
         Exception.NotFound notFound = Assertions.assertThrows(Exception.NotFound.class, () -> transferService.transfer(transferResource));
-        Assertions.assertEquals("Falha na transferência: Carteira de origem não encontrada", notFound.getMessage());
+        Assertions.assertEquals("Falha na transferência: Carteira de origem não encontrada: 1", notFound.getMessage());
     }
 
     @Test
@@ -143,6 +142,6 @@ public class TransferServiceTest {
         Mockito.when(walletServiceFeignClient.getWallet(2L)).thenThrow(FeignException.NotFound.class);
 
         Exception.NotFound notFound = Assertions.assertThrows(Exception.NotFound.class, () -> transferService.transfer(transferResource));
-        Assertions.assertEquals("Falha na transferência: Carteira de destino não encontrada", notFound.getMessage());
+        Assertions.assertEquals("Falha na transferência: Carteira de destino não encontrada: 2", notFound.getMessage());
     }
 }
