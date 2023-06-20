@@ -1,6 +1,7 @@
 package com.purebank.paymenttransferservice.transfer.service.Impl;
 
 import com.purebank.paymenttransferservice.common.enums.ActivityType;
+import com.purebank.paymenttransferservice.exceptions.handler.TransferUpdateWalletsException;
 import com.purebank.paymenttransferservice.external.wallet.resourcer.WalletResource;
 import com.purebank.paymenttransferservice.external.wallet.service.WalletServiceFeignClient;
 import com.purebank.paymenttransferservice.transfer.message.producer.TransferMessageProducer;
@@ -49,10 +50,12 @@ public class TransferServiceImpl implements TransferService {
 
     public void performTransfer(TransferResource transferResource) {
         WalletResource walletOrigin = getWalletResource(transferResource
-                .getWalletOrigin(), new TransferException(FAILURE_TRANSFER_ORIGIN_WALLET_NOT_FOUND));
+                .getWalletOrigin(), new TransferException(String
+                .format(FAILURE_TRANSFER_ORIGIN_WALLET_NOT_FOUND, transferResource.getWalletOrigin())));
 
         WalletResource walletDestiny = getWalletResource(transferResource
-                .getWalletDestiny(), new TransferException(FAILURE_TRANSFER_ORIGIN_WALLET_NOT_FOUND));
+                .getWalletDestiny(), new TransferException(String
+                .format(FAILURE_TRANSFER_ORIGIN_WALLET_NOT_FOUND, transferResource.getWalletDestiny())));
 
         if (insufficientBalance(transferResource, walletOrigin)) {
             sendWalletActivity(String.format(FAILURE_TRANSFER_TO_WALLET_X, walletDestiny.getName()), walletOrigin.getId(), ProcessStatus.FAILED, transferResource);
@@ -97,7 +100,7 @@ public class TransferServiceImpl implements TransferService {
             walletOrigin.setBalance(walletOrigin.getBalance().subtract(transferResource.getAmount()));
             walletServiceFeignClient.updateWallet(walletOrigin);
             walletServiceFeignClient.updateWallet(walletDestiny);
-        } catch (Exception ex) {
+        } catch (TransferUpdateWalletsException ex) {
             log.error("Erro ao atualizar saldo de contas durante tranferência conta origem: {} - conta destino: {}", walletOrigin.getId(), walletDestiny.getId());
             sendWalletActivity(String.format(FAILURE_TRANSFER_TO_WALLET_X, walletDestiny.getName()), walletOrigin.getId(), ProcessStatus.FAILED, transferResource);
             throw ex;
