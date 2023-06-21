@@ -74,7 +74,7 @@ Após executar esses passos, a aplicação estará disponível em http://localho
 - O projeto está utilizando FlywayDB e nesse caso, para facilitar os testes locais, o banco de dados já terá 4 Wallets.
 - Acesse a documentação da API em http://localhost:8081/swagger-ui/index.html para obter mais detalhes sobre os endpoints disponíveis.
 
-## Setup da aplicação usando Docker
+# Setup da aplicação usando Docker
 Antes de executar a aplicação, considerando que o projeto ja vem com H2 e RabbitMQ configurados no projeto, certifique-se de ter as seguintes dependências instaladas corretamente em seu ambiente de desenvolvimento:
 
 - Java 17
