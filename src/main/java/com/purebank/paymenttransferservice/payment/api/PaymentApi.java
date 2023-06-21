@@ -28,7 +28,6 @@ public interface PaymentApi {
                     schema = @Schema(implementation = ApiErrorMessage.class)))
     @Operation(summary = "Realizar pagamento",
             description = "Realiza um pagamento com base no ID da carteira e no identificador do pagamento")
-    @PostMapping(consumes =  MediaType.APPLICATION_JSON_VALUE)
     @GetMapping("/{walletId}/{paymentIdentifier}")
     ResponseEntity<Void> pay(@Parameter(description = "ID da carteira", required = true)
             @PathVariable Long walletId,
