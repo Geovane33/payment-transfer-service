@@ -31,22 +31,23 @@ Certifique-se de substituir `seu_host`, `sua_porta`, `seu_usuario` e `sua_senha`
 
 ## Instalação e execução da aplicação
 
-1. Clone o repositório:
+**1. Clone o repositório:**
 ```
 git clone git@github.com:Geovane33/payment-transfer-service.git
 ```
 
-2. Acesse o diretório do projeto:
+**2. Acesse o diretório do projeto:**
 ```
 cd payment-transfer-service
 ```
 
-3. Compile o código e baixe as dependências do projeto:
+**3. Caso não tenha executado o serviço exteno [wallet-service](https://github.com/Geovane33/wallet-service) execute e caso tenha alterado a url padrão(localhost:8080), informe a url de serviço exteno wallet-service no application.yml.**
+
+**4. Compile o código e baixe as dependências do projeto:**
 ```
 mvn clean package
 ```
-
-4. Inicie a aplicação:
+**5. Inicie a aplicação:**
 ```
 mvn spring-boot:run
 ```
@@ -98,5 +99,5 @@ docker run -d -p 8081:8081 --network local --name payment-transfer-service payme
 - Após executar esses passos, a aplicação estará disponível em http://localhost:8081.
 - Acesse a documentação da API em http://localhost:8081/swagger-ui/index.html para obter mais detalhes sobre os endpoints disponíveis.
 
-#
+
 ![wallet comunicações](wallet.png)
