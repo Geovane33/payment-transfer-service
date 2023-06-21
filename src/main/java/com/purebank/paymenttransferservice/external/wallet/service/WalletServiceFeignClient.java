@@ -4,12 +4,12 @@ import com.purebank.paymenttransferservice.external.wallet.resourcer.WalletResou
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(url = "http://localhost:8080/api/wallet", name = "walletService")
+@FeignClient(name = "walletService", url = "http://wallet-service:8080")
 public interface WalletServiceFeignClient {
 
-    @GetMapping("/{walletId}")
+    @GetMapping("/api/wallet/{walletId}")
     WalletResource getWallet(@PathVariable Long walletId);
 
-    @PutMapping()
+    @PutMapping("/api/wallet")
     WalletResource updateWallet(@RequestBody WalletResource walletResource);
 }

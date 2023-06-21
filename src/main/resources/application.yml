@@ -14,3 +14,5 @@ spring:
     password: HFPrV1eq1gLSAjQ0E_0mo5WDGgeLx-uj
 
 server.port: 8081
+
+wallet-service: http://wallet-service:8080
