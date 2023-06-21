@@ -1,6 +1,7 @@
 package com.purebank.paymenttransferservice.transfer.resource;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.purebank.paymenttransferservice.common.enums.ProcessStatus;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
@@ -27,9 +28,11 @@ public class TransferResource {
     private Boolean externalAccount;
 
     @Schema(description = "Status da transferência")
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private ProcessStatus status;
 
     @Schema(description = "Descrição da transferência")
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String statusDescription;
 
     @JsonIgnore

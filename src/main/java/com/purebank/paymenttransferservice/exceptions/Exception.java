@@ -28,6 +28,12 @@ public class Exception extends RuntimeException {
         }
     }
 
+    public static class InvalidWallet extends Exception {
+        public InvalidWallet(String message) {
+            super(message, HttpStatus.BAD_REQUEST);
+        }
+    }
+
     public static class ServiceTemporarilyOffline extends Exception {
         public ServiceTemporarilyOffline(String message) {
             super(message, HttpStatus.BAD_REQUEST);

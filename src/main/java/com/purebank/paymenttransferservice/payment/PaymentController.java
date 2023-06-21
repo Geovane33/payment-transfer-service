@@ -11,8 +11,8 @@ public class PaymentController implements PaymentApi {
     @Autowired
     private PaymentService paymentService;
 
-    public ResponseEntity<String> pay(Long walletId, String paymentIdentifier) {
+    public ResponseEntity<Void> pay(Long walletId, String paymentIdentifier) {
         paymentService.pay(walletId, paymentIdentifier);
-        return ResponseEntity.ok("Pagamento realizado com sucesso");
+        return ResponseEntity.ok().build();
     }
 }

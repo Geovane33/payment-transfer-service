@@ -52,10 +52,12 @@ public class TransferControllerTest {
         transferResource.setWalletDestiny(2L);
         transferResource.setAmount(new BigDecimal("1000000.00"));
         transferResource.setExternalAccount(false);
-        mockMvc.perform(MockMvcRequestBuilders.post(API_TRANSFER)
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post(API_TRANSFER)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(transferResource)))
-                .andExpect(MockMvcResultMatchers.status().isBadRequest());
+                .andExpect(MockMvcResultMatchers.status().isBadRequest()).andReturn();
+
+        Assertions.assertEquals("{\"status\":\"BAD_REQUEST\",\"errors\":[\"Falha na transferencia: O valor tem que ser maior que R$0,00 e menor que R$1.000.000,00\"]}", mvcResult.getResponse().getContentAsString());
     }
 
     @Test
@@ -66,10 +68,28 @@ public class TransferControllerTest {
         transferResource.setWalletDestiny(2L);
         transferResource.setAmount(new BigDecimal("0"));
         transferResource.setExternalAccount(false);
-        mockMvc.perform(MockMvcRequestBuilders.post(API_TRANSFER)
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post(API_TRANSFER)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(transferResource)))
-                .andExpect(MockMvcResultMatchers.status().isBadRequest());
+                .andExpect(MockMvcResultMatchers.status().isBadRequest()).andReturn();
+
+        Assertions.assertEquals("{\"status\":\"BAD_REQUEST\",\"errors\":[\"Falha na transferencia: O valor tem que ser maior que R$0,00 e menor que R$1.000.000,00\"]}", mvcResult.getResponse().getContentAsString());
+    }
+
+    @Test
+    @DisplayName("Realizar transferência para contas iguais")
+    public void transferToEqualAccounts() throws Exception {
+        TransferResource transferResource = new TransferResource();
+        transferResource.setWalletOrigin(1L);
+        transferResource.setWalletDestiny(1L);
+        transferResource.setAmount(new BigDecimal("10"));
+        transferResource.setExternalAccount(false);
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post(API_TRANSFER)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(transferResource)))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest()).andReturn();
+
+        Assertions.assertEquals("{\"status\":\"BAD_REQUEST\",\"errors\":[\"Falha na transferencia: Conta de origem e destino nÃ£o iguais\"]}", mvcResult.getResponse().getContentAsString());
     }
 
     @Test
