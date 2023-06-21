@@ -82,7 +82,7 @@ mvn clean package
 docker build -t payment-transfer-service .
 ```
 
-**6. O serviço faz comunicação com [https://github.com/Geovane33/wallet-service](wallet-service) então caso não tenha criado, crie uma rede para conectar os containers:**
+**6. O serviço faz comunicação com [wallet-service](https://github.com/Geovane33/wallet-service) então caso não tenha criado, crie uma rede para conectar os containers:**
 ```
 docker network create local
 ```
