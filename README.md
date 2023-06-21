@@ -90,6 +90,7 @@ git clone git@github.com:Geovane33/payment-transfer-service.git
 ```
 cd payment-transfer-service
 ```
+**3. Informar a url de serviço exteno `wallet-service` no `application.yml`** 
 
 **3. Compile o código e baixe as dependências do projeto:**
 ```
