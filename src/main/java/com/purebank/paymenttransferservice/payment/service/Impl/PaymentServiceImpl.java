@@ -30,7 +30,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public void pay(Long walletId, String paymentIdentifier) {
-        WalletResource wallet = getWalletResource(walletId, new Exception.NotFound(String.format(WALLET_NOT_FOUND, walletId)));
+        WalletResource wallet = getWalletResource(walletId);
 
         if (insufficientBalance(wallet)) {
             sendWalletActivity(String.format(INSUFFICIENT_BALANCE_TO_PERFORM_PAYMENT, paymentIdentifier),
@@ -57,15 +57,15 @@ public class PaymentServiceImpl implements PaymentService {
         paymentMessageProducer.sendWalletActivity(walletActivityResource);
     }
 
-    private WalletResource getWalletResource(Long walletId, RuntimeException ex) {
+    private WalletResource getWalletResource(Long walletId) {
         try {
             return walletServiceFeignClient.getWallet(walletId);
         } catch (FeignException.NotFound notFound) {
-            throw ex;
-        } catch (Exception e) {
+            throw new Exception.NotFound(String.format(WALLET_NOT_FOUND, walletId));
+        } catch (FeignException e) {
             log.error("Erro ao obter carteira : {}", e.getMessage());
             e.printStackTrace();
-            throw e;
+            throw new Exception.ServiceTemporarilyOffline("Serviço temporariamente fora do ar");
         }
     }
 
