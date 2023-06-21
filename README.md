@@ -97,3 +97,5 @@ docker run -d -p 8081:8081 --network local --name payment-transfer-service payme
 
 - Após executar esses passos, a aplicação estará disponível em http://localhost:8081.
 - Acesse a documentação da API em http://localhost:8081/swagger-ui/index.html para obter mais detalhes sobre os endpoints disponíveis.
+#
+![wallet comunicações](wallet.png)
