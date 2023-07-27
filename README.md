@@ -102,4 +102,4 @@ docker run -d -p 8081:8081 --network local --name payment-transfer-service payme
 
 ![wallet comunicações](wallet.png)
 
-Este repositório não armezena somente códigos desse projeto, ele armazena determinação, noites em claro, muito aprendizado e expectativas que, por vezes, foram frustadas!! Mas eu sei que cada linha representa uma jornada repleta de desafios e superações. Este repositório é mais do que uma simples coleção de arquivos, é uma história de crescimento, evolução e o reflexo do poder de nunca desistir diante das adversidades.
+Este repositório não armezena somente códigos desse projeto, ele armazena determinação, noites em claro, muito aprendizado e expectativas que, por vezes, foram frustradas!! Mas eu sei que cada linha representa uma jornada repleta de desafios e superações. Este repositório é mais do que uma simples coleção de arquivos, é uma história de crescimento, evolução e o reflexo do poder de nunca desistir diante das adversidades.
